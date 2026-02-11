@@ -1,9 +1,18 @@
-import { Button, Input } from "@base-ui/react";
+"use client";
 
+import { Divide, Minus, Plus, X } from "lucide-react";
 import { useState } from "react";
-import { Select, SelectTrigger, SelectValue } from "./shadcnui/select";
+import { Button } from "./shadcnui/button";
+import { Input } from "./shadcnui/input";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "./shadcnui/select";
 
-const AdvancedCalculator = () => {
+const AdvanceCalculator = () => {
   const [number1, setNumber1] = useState("");
   const [number2, setNumber2] = useState("");
   const [operator, setOperator] = useState("");
@@ -44,6 +53,7 @@ const AdvancedCalculator = () => {
     setOperator("");
     setTotal("");
   };
+
   return (
     <div className="grid grid-cols-3 gap-6">
       <Input
@@ -54,11 +64,25 @@ const AdvancedCalculator = () => {
       />
 
       <Select
-        onValueChange={(opValue) => setOperator(opValue)}
+        onValueChange={(opValue) => setOperator(opValue ?? "")}
         value={operator}>
         <SelectTrigger className="w-full">
           <SelectValue placeholder="Operator" />
         </SelectTrigger>
+        <SelectContent>
+          <SelectItem value="+">
+            <Plus />
+          </SelectItem>
+          <SelectItem value="-">
+            <Minus />
+          </SelectItem>
+          <SelectItem value="x">
+            <X />
+          </SelectItem>
+          <SelectItem value="/">
+            <Divide />
+          </SelectItem>
+        </SelectContent>
       </Select>
 
       <Input
@@ -95,4 +119,4 @@ const AdvancedCalculator = () => {
   );
 };
 
-export default AdvancedCalculator;
+export default AdvanceCalculator;
